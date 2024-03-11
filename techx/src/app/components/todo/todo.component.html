@@ -1,0 +1,33 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet" ngSkipHydration>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" ngSkipHydration>
+  </head>  
+<body>
+  <div class="todo-container">
+      <img src="../../../assets/techX.png" alt="" id="techx-logo">
+      <div class="todo">
+          <div id="input-container">
+              <input type="text" name="content" id="task-input" #inputRef maxlength="100">
+              <button type="submit" id="task-input-button" (click)="addTask()">
+                  <ng-icon name="featherPlusSquare" id="task-input-button-icon"></ng-icon>
+              </button>
+          </div>
+          <ul class="todo-list">
+            <li class="todo-list-item" *ngFor="let task of tasks" [id]="task.id">
+              <button class="task-check-button" [id]="'conclusion-' + task.conclusion" (click)="toggleCheck(task)"><ng-icon name="featherCheckSquare" class="task-check-icon"></ng-icon></button>
+              <td class="task-name" *ngIf="!task.isEditing; else editMode">
+                <span>{{ task.task }}</span>
+              </td>
+              <ng-template #editMode>
+                <input type="text" #updateRef class="task-list-input" maxlength="100">
+              </ng-template>
+              <div class="task-button-container" id="">
+                <button class="task-edit-button" [id]="task.id" (click)="checkTask(task)"><ng-icon name="heroCog6Tooth" class="task-edit-icon"></ng-icon></button>
+                <button class="task-remove-button" [id]="task.id" (click)="removeTask(task.id)"><ng-icon name="featherXSquare" class="task-remove-icon"></ng-icon></button>
+              </div>
+            </li>
+          </ul>
+      </div>
+  </div>
+
+</body>
